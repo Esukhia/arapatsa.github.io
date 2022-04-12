@@ -2,18 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jomolhari">
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/light.css"/>
+    <style>
+    #ROOTEXT {
+        text-shadow: 3px 3px 3px #ababab;
+        font-family: "Jomolhari", sans-serif;
+        font-size: 30px;
+    }
+    #DEF {
+        font-family: "Jomolhari", sans-serif;
+        font-size: 20px;
+    }
+    .tippy-box[data-theme~='popup'] {
+        background-color: grey;
+        color: white;
+    }
+    span:hover {
+        background-color: oldlace;
+    }
+
+    </style>
 </head>
 <body>
-    <span id="myButton">བཀྲ་ཤིས་བདེ་ལེགས</span>
+    <p><span id="ROOTEXT" data-template="1">བཀྲ་ཤིས་</span><span id="ROOTEXT" data-template="2">བདེ་ལེགས།</span></p>
+
+    <div style="display: none;">
+        <div id="1"><div id="DEF">
+            འགྲེལ་བཤད་དང་པོ་ཡིན་ནོ།
+        </div></div>
+        <div id="2"><div id="DEF">
+            འགྲེལ་བཤད་གཉིས་པ་ཡིན།
+        </div></div>
+    </div>
+
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
-        <script>
-      // With the above scripts loaded, you can call `tippy()` with a CSS
-      // selector and a `content` prop:
-      tippy('#myButton', {
-        content: 'My tooltip!',
-      });
+    <script>
+        const word1 = document.getElementById('word1');
+
+        tippy('#ROOTEXT', {
+            content(reference) {
+                const id = reference.getAttribute('data-template');
+                const template = document.getElementById(id);
+                return template.innerHTML;
+            },
+            allowHTML: true,
+            animation: 'fade',
+            arrow: false,
+            duration: [3000, 500],
+            interactive: true,
+            maxWidth: 350,
+            offset: [10, -15],
+            placement: 'bottom-start',
+            theme: 'popup',
+        });
     </script>
+
 </body>
 </html>
