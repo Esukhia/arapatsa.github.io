@@ -25,7 +25,7 @@
     </style>
 </head>
 <body>
-    <p><span id="ROOTEXT" data-template="1">བཀྲ་ཤིས་</span><span id="ROOTEXT" data-template="2">བདེ་ལེགས།</span></p>
+    <p id="ROOTEXT"><span id="word" data-template="1">བཀྲ་ཤིས་</span><span id="word" data-template="2">བདེ་ལེགས།</span></p>
 
     <div style="display: none;">
         <div id="1"><div id="DEF">
@@ -41,7 +41,7 @@
     <script>
         const word1 = document.getElementById('word1');
 
-        tippy('#ROOTEXT', {
+        tippy('#word', {
             content(reference) {
                 const id = reference.getAttribute('data-template');
                 const template = document.getElementById(id);
