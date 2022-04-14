@@ -1,0 +1,32 @@
+#ROOTEXT {
+    font-family: "Jomolhari", sans-serif;
+    font-size: 30px;
+}
+#DEF {
+    font-family: "Jomolhari", sans-serif;
+    font-size: 25px;
+}
+#ENTITLE {
+    font-family: "Jomolhari", sans-serif;
+    font-size: 25px;
+}
+#ENENTRY {
+    font-family: "Jomolhari", sans-serif;
+    font-size: 25px;
+}
+#BOTITLE {
+    font-family: "Jomolhari", sans-serif;
+    font-size: 25px;
+}
+#BOENTRY {
+    font-family: "Jomolhari", sans-serif;
+    font-size: 25px;
+}
+.tippy-box[data-theme~='popup'] {
+    background-color: grey;
+    color: white;
+}
+span:hover {
+    background-color: oldlace;
+}
+
