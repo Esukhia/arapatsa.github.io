@@ -1,9 +1,8 @@
 from textwrap import dedent
 
 html_a = dedent("""\
-    <html>
-    <!DOCTYPE html>
     <html lang="en">
+    <!DOCTYPE html>
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jomolhari">
