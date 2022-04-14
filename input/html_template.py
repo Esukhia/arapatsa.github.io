@@ -66,10 +66,10 @@ defn = dedent("""\
     <a href="{url}" target="_blank"><img alt="ཚིག་མཛོད།" src="../assets/dict_icon.png" width=27" height="22"></a>
 </div>""")
 
-en_title = '<div class="ENTITLE">{title}</div>'
-en_entry = '<div class="ENENTRY">{entry}</div>'
-bo_title = '<div class="BOTITLE">{title}</div>'
-bo_entry = '<div class="BOENTRY">{entry}</div>'
+en_title = '<div id="ENTITLE">{title}</div>'
+en_entry = '<div id="ENENTRY">{entry}</div>'
+bo_title = '<div id="BOTITLE">{title}</div>'
+bo_entry = '<div id="BOENTRY">{entry}</div>'
 
-dictdef_sep = '<br />'
+dictdef_sep = ''
 dictdict_sep = '<br /><br />'
