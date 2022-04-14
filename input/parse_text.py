@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from third_party.dictify import dictify_text
+from third_party.dictify.dictify import dictify_text
 
 
 def recursive_process(in_path):
