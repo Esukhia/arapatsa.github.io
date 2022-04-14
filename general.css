@@ -3,11 +3,11 @@
     font-size: 30px;
 }
 #DEF {
-    font-family: "Jomolhari", sans-serif;
+    font-family: "Jomolhari", "Noto Serif Tibetan", sans-serif;
     font-size: 25px;
 }
 #ENTITLE {
-    font-family: "Arial", sans-serif;
+    font-family: "Arial", "Noto Serif Tibetan", sans-serif;
     font-size: 20px;
     font-weight: bold;
 }
@@ -16,13 +16,14 @@
     font-size: 17px;
 }
 #BOTITLE {
-    font-family: "Jomolhari", sans-serif;
-    font-size: 30px;
+    font-family: "Noto Serif Tibetan", sans-serif;
+    font-size: 20px;
     font-weight: bold;
 }
 #BOENTRY {
-    font-family: "Jomolhari", sans-serif;
-    font-size: 25px;
+    font-family: "Noto Serif Tibetan", sans-serif;
+    font-size: 20px;
+    line-height: 2em;
 }
 .tippy-box[data-theme~='popup'] {
     background-color: grey;
@@ -30,5 +31,25 @@
 }
 span:hover {
     background-color: oldlace;
+}
+/* noto-serif-tibetan-regular - tibetan */
+@font-face {
+  font-family: 'Noto Serif Tibetan';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+       url('assets/fonts/noto-serif-tibetan-v14-tibetan-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('assets/fonts/noto-serif-tibetan-v14-tibetan-regular.woff') format('woff'), /* Modern Browsers */
+       url('assets/fonts/noto-serif-tibetan-v14-tibetan-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+}
+/* noto-serif-tibetan-600 - tibetan */
+@font-face {
+  font-family: 'Noto Serif Tibetan';
+  font-style: bold;
+  font-weight: 600;
+  src: local(''),
+       url('assets/fonts/noto-serif-tibetan-v14-tibetan-600.woff2') format('woff2'), /* Super Modern Browsers */
+       url('assets/fonts/noto-serif-tibetan-v14-tibetan-600.woff') format('woff'), /* Modern Browsers */
+       url('assets/fonts/noto-serif-tibetan-v14-tibetan-600.ttf') format('truetype'), /* Safari, Android, iOS */
 }
 
