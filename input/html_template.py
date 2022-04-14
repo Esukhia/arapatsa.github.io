@@ -52,7 +52,7 @@ texts = '<p id="ROOTEXT">{total_texts}</p>'
 
 text = '<span id="word" data-template="{idx}">{word}</span>'
 
-nodef_text = '<span>{word}</span>'
+nodef_text = '<span id="NODEF">{word}</span>'
 
 defns = dedent("""\
 <div style="display: none;">

@@ -6,21 +6,47 @@ from html_template import html_a, html_b, html_c, texts, text, nodef_text, en_ti
 
 def recursive_process(in_path):
     in_path = Path(in_path)
-    for f in in_path.rglob('*.txt'):
+    for f in sorted(list(in_path.rglob('*.txt'))):
         process_file(f)
 
 
 def process_file(filename):
     dump = filename.read_text()
 
+    # cleanup text
+    to_render, to_process = cleanup(dump)
+
     # get definitions
-    defs = dictify_text(dump)
+    defs = dictify_text(' '.join(to_process))
+
+    # use cleaned text
+    defs = [(to_render[num], d[1]) for num, d in enumerate(defs)]
 
     # generate html
     html = gen_html(defs)
 
     outfile = filename.parent / (filename.stem + '.html')
     outfile.write_text(html)
+
+
+def cleanup(text):
+    text = text.replace('\n', ' \n ')
+    tokens = text.split(' ')
+    to_process = []
+    to_render = []
+    for t in tokens:
+        r, p = t, t
+        if '{' in t:
+            r, p = t[:-1].split('{')
+        if '-' in t:
+            r, p = t.replace('-', ''), t
+        if '_' in t:
+            r, p = t.replace('_', ' '), t
+
+        to_render.append(r)
+        to_process.append(p)
+
+    return to_render, to_process
 
 
 def gen_html(defs):
