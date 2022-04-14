@@ -1,0 +1,3 @@
+[submodule "input/third_party"]
+	path = input/third_party
+	url = https://github.com/Dharma-Sagar/dictify
