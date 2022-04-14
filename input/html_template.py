@@ -61,9 +61,9 @@ defns = dedent("""\
 
 defn = dedent("""\
 <div id="{idx}">
-    {text}
-    <br /><br />
     <a href="{url}" target="_blank"><img alt="ཚིག་མཛོད།" src="../assets/dict_icon.png" width=27" height="22"></a>
+    <br />
+    {text}
 </div>""")
 
 en_title = '<div id="ENTITLE">{title}</div>'
