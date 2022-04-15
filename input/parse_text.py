@@ -17,11 +17,11 @@ def process_file(filename):
     to_render, to_process = cleanup(dump)
 
     # get definitions
-    defs = dictify_text(' '.join(to_process))
+    defs = dictify_text(to_process, is_split=True)
 
-    # use cleaned text
+    # retrieve cleaned text in defs
     defs = [(to_render[num], d[1]) for num, d in enumerate(defs)]
-
+    print()
     # generate html
     html = gen_html(defs)
 
@@ -35,6 +35,8 @@ def cleanup(text):
     to_process = []
     to_render = []
     for t in tokens:
+        if not t:
+            continue
         r, p = t, t
         if '{' in t:
             r, p = t[:-1].split('{')

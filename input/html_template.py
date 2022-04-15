@@ -41,7 +41,6 @@ html_c = dedent("""\
                 offset: [0, 0],
                 placement: 'bottom-start',
                 theme: 'popup',
-                delay: 700,
             });
         </script>
     </body>
