@@ -4,24 +4,25 @@ from third_party.dictify.dictify import dictify_text
 from html_template import html_a, html_b, html_c, texts, text, nodef_text, en_title, en_entry, bo_title, bo_entry, defns, defn, dictdef_sep, dictdict_sep
 
 
-def recursive_process(in_path):
+def recursive_process(in_path, mode='en_bo', selection=None):
     in_path = Path(in_path)
     for f in sorted(list(in_path.rglob('*.txt'))):
-        process_file(f)
+        process_file(f, mode=mode, selection=selection)
 
 
-def process_file(filename):
+def process_file(filename, mode='en_bo', selection=None):
+
     dump = filename.read_text()
 
     # cleanup text
     to_render, to_process = cleanup(dump)
 
     # get definitions
-    defs = dictify_text(to_process, is_split=True)
+    defs = dictify_text(to_process, is_split=True, mode=mode, selection_yaml=selection)
 
     # retrieve cleaned text in defs
     defs = [(to_render[num], d[1]) for num, d in enumerate(defs)]
-    print()
+
     # generate html
     html = gen_html(defs)
 
@@ -91,4 +92,6 @@ def gen_html(defs):
 
 if __name__ == '__main__':
     in_path = 'content'
-    recursive_process(in_path)
+    mode = 'bo'  # options: 'en', 'bo', 'en_bo'
+    dict_yaml = 'selection_tsikchen.yaml'
+    recursive_process(in_path, mode=mode, selection=dict_yaml)
