@@ -50,8 +50,9 @@ html_c = dedent("""\
 texts = '<p id="ROOTEXT">{total_texts}</p>'
 
 text = '<span id="word" data-template="{idx}">{word}</span>'
-
+text_bold = '<span id="word" data-template="{idx}" style="font-weight: bold;">{word}</span>'
 nodef_text = '<span id="NODEF">{word}</span>'
+nodef_text_bold = '<span id="NODEF" style="font-weight: bold;">{word}</span>'
 
 defns = dedent("""\
 <div style="display: none;">
