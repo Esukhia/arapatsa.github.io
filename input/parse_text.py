@@ -100,6 +100,6 @@ def gen_html(defs):
 
 if __name__ == '__main__':
     in_path = 'content'
-    mode = 'bo'  # options: 'en', 'bo', 'en_bo'
+    mode = 'en_bo'  # options: 'en', 'bo', 'en_bo'
     dict_yaml = 'selection_tsikchen.yaml'
     recursive_process(in_path, mode=mode, selection=dict_yaml)
