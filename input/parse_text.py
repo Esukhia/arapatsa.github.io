@@ -47,6 +47,9 @@ def cleanup(text):
             r, p = t.replace('-', ''), t
         if '_' in t:
             r, p = t.replace('_', ' '), t
+        if '}*' in t:
+            r, p = t[:-2].split('{')
+            r += '*'
 
         to_render.append(r)
         to_process.append(p)
@@ -59,6 +62,8 @@ def gen_html(defs):
     total_defns = []
     num = 0
     for word, dfs in defs:
+        if word == 'མེད་པ*':
+            print()
         num += 1
         if not dfs['defs']:
             if word == '\n':
@@ -99,7 +104,7 @@ def gen_html(defs):
 
 
 if __name__ == '__main__':
-    in_path = 'content'
+    in_path = 'content/B1/Week1/A/2/'
     mode = 'en_bo'  # options: 'en', 'bo', 'en_bo'
     dict_yaml = 'selection_tsikchen.yaml'
     recursive_process(in_path, mode=mode, selection=dict_yaml)
