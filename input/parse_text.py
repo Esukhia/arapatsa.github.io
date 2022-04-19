@@ -26,7 +26,12 @@ def process_file(filename, mode='en_bo', selection=None):
     # generate html
     html = gen_html(defs)
 
-    outfile = filename.parent / (filename.stem + '.html')
+    out_folder = Path(__file__).parent.parent / Path(filename.parts[1])
+    if 'en' in mode:
+        name = '-'.join(filename.parts[2:-1]) + '-' + filename.stem + '_EN.html'
+    else:
+        name = '-'.join(filename.parts[2:-1]) + '-' + filename.stem + '.html'
+    outfile = out_folder / name
     outfile.write_text(html)
 
 
@@ -125,7 +130,7 @@ def gen_html(defs):
 
 
 if __name__ == '__main__':
-    in_path = 'content/B1/Week1/A/3/'
-    mode = 'bo'  # options: 'en', 'bo', 'en_bo'
-    dict_yaml = 'selection_tsikchen.yaml'
-    recursive_process(in_path, mode=mode, selection=dict_yaml)
+    in_path = 'content/'
+    for mode in ['bo', 'bo_en']:
+        dict_yaml = 'selection_tsikchen.yaml'
+        recursive_process(in_path, mode=mode, selection=dict_yaml)
