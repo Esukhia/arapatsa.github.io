@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from third_party.dictify.dictify import dictify_text
-from html_template import html_a, html_b, html_c, texts, text, text_bold, nodef_text, nodef_text_bold, en_title, en_entry, bo_title, bo_entry, defns, defn, dictdef_sep, dictdict_sep
+from html_template import html_a, html_b, html_c, texts, text, text_bold, nodef_text, nodef_text_bold, en_title, en_entry, bo_title, bo_entry, defns, defn, dictdef_sep, dictdict_sep, title_start, title_end, bold_start, bold_end
 
 
 def recursive_process(in_path, mode='en_bo', selection=None):
@@ -61,10 +61,32 @@ def gen_html(defs):
     total_text = []
     total_defns = []
     num = 0
+    is_title = False
+    level = None
     for word, dfs in defs:
-        if word == 'མེད་པ*':
-            print()
         num += 1
+        # parse titles
+        if word.startswith('h'):
+            is_title = True
+            level = word
+            total_text.append(title_start.format(level=word))
+            continue
+
+        if word == '\n' and is_title:
+            is_title = False
+            total_text.append(title_end.format(level=level))
+
+        if word == '//*':
+            total_text.append(bold_start)
+            continue
+
+        if word == '*//':
+            total_text.append(bold_end)
+            continue
+
+        if '+' in word:
+            word = word.replace('+', '&nbsp;' * 4)
+
         if not dfs['defs']:
             if word == '\n':
                 word = '<br />'
@@ -93,7 +115,6 @@ def gen_html(defs):
         entry = dictdict_sep.join(entry)
         total_defns.append(defn.format(idx=num, text=entry, url=dfs['url']))
 
-    print()
     total_text = ''.join(total_text)
     total_defns = '\n'.join(total_defns)
     total_texts = texts.format(total_texts=total_text)
@@ -104,7 +125,7 @@ def gen_html(defs):
 
 
 if __name__ == '__main__':
-    in_path = 'content/B1/Week1/A/2/'
-    mode = 'en_bo'  # options: 'en', 'bo', 'en_bo'
+    in_path = 'content/B1/Week1/A/3/'
+    mode = 'bo'  # options: 'en', 'bo', 'en_bo'
     dict_yaml = 'selection_tsikchen.yaml'
     recursive_process(in_path, mode=mode, selection=dict_yaml)

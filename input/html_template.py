@@ -73,3 +73,9 @@ bo_entry = '<div id="BOENTRY">{entry}</div>'
 
 dictdef_sep = ''
 dictdict_sep = '<br /><br />'
+
+title_start = '</p><{level}>'
+title_end = '</{level}><p id="ROOTEXT">'
+
+bold_start = '<b>'
+bold_end = '</b>'
