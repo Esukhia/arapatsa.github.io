@@ -80,6 +80,7 @@ def gen_html(defs):
         if word == '\n' and is_title:
             is_title = False
             total_text.append(title_end.format(level=level))
+            continue
 
         if word == '//*':
             total_text.append(bold_start)
