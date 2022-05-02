@@ -166,5 +166,5 @@ if __name__ == '__main__':
     in_path = 'content/'
     is_expandable = True
     for mode in ['bo', 'bo_en']:
-        dict_yaml = 'selection_tsikchen.yaml'
+        dict_yaml = 'selection_arapatsa.yaml'
         recursive_process(in_path, mode=mode, selection=dict_yaml, is_expandable=is_expandable)
