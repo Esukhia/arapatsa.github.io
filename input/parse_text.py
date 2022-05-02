@@ -1,16 +1,17 @@
 from pathlib import Path
 
 from third_party.dictify.dictify import dictify_text
-from html_template import html_a, html_b, html_c, texts, text, text_bold, nodef_text, nodef_text_bold, en_title, en_entry, bo_title, bo_entry, defns, defn, dictdef_sep, dictdict_sep, title_start, title_end, bold_start, bold_end
+from html_template import html_a, html_b, html_c, texts, text, text_bold, nodef_text, nodef_text_bold, en_title, en_entry, bo_title, bo_entry, defns, defn, dictdef_sep, dictdict_sep, title_start, title_end, bold_start, bold_end, sense, sense_sep
 
 
-def recursive_process(in_path, mode='en_bo', selection=None):
+def recursive_process(in_path, mode='en_bo', selection=None, is_expandable=True):
     in_path = Path(in_path)
     for f in sorted(list(in_path.rglob('*.txt'))):
-        process_file(f, mode=mode, selection=selection)
+        print(f.name)
+        process_file(f, is_expandable, mode=mode, selection=selection)
 
 
-def process_file(filename, mode='en_bo', selection=None):
+def process_file(filename, is_expandable, mode='en_bo', selection=None):
 
     dump = filename.read_text()
 
@@ -18,7 +19,7 @@ def process_file(filename, mode='en_bo', selection=None):
     to_render, to_process = cleanup(dump)
 
     # get definitions
-    defs = dictify_text(to_process, is_split=True, mode=mode, selection_yaml=selection)
+    defs = dictify_text(to_process, is_split=True, selection_yaml=selection, expandable=is_expandable, mode=mode)
 
     # retrieve cleaned text in defs
     defs = [(to_render[num], d[1]) for num, d in enumerate(defs)]
@@ -107,14 +108,45 @@ def gen_html(defs):
         else:
             total_text.append(text.format(idx=num, word=word))
 
+        sense_idx = 0
         entry = []
         for lang, e in dfs['defs'].items():
             if lang == 'en':
                 l_title = en_title.format(title=e[0])
-                l_entry = en_entry.format(entry=e[1])
+                if isinstance(e[1], str):
+                    l_entry = en_entry.format(entry=e[1])
+                elif isinstance(e[1], list):
+                    senses = []
+                    for s in e[1]:
+                        if isinstance(s, tuple):
+                            _sense = sense.format(sense_idx=sense_idx, sense_head=s[0], sense_body=s[1])
+                            senses.append(_sense)
+                            sense_idx += 1
+                        elif isinstance(s, str):
+                            senses.append(s)
+                        else:
+                            raise SyntaxError
+                    l_entry = en_entry.format(entry=sense_sep.join(senses))
+                else:
+                    raise SyntaxError
             elif lang == 'bo':
                 l_title = bo_title.format(title=e[0])
-                l_entry = bo_entry.format(entry=e[1])
+                if isinstance(e[1], str):
+                    l_entry = bo_entry.format(entry=e[1])
+                elif isinstance(e[1], list):
+                    senses = []
+                    for s in e[1]:
+                        if isinstance(s, tuple):
+                            _sense = sense.format(sense_idx=sense_idx, sense_head=s[0], sense_body=s[1])
+                            senses.append(_sense)
+                            sense_idx += 1
+                        elif isinstance(s, str):
+                            senses.append(s)
+                        else:
+                            raise SyntaxError
+                    l_entry = bo_entry.format(entry=sense_sep.join(senses))
+                else:
+                    raise SyntaxError
             else:
                 raise SyntaxError
             entry.append(l_title + dictdef_sep + l_entry)
@@ -132,6 +164,7 @@ def gen_html(defs):
 
 if __name__ == '__main__':
     in_path = 'content/'
+    is_expandable = True
     for mode in ['bo', 'bo_en']:
         dict_yaml = 'selection_tsikchen.yaml'
-        recursive_process(in_path, mode=mode, selection=dict_yaml)
+        recursive_process(in_path, mode=mode, selection=dict_yaml, is_expandable=is_expandable)

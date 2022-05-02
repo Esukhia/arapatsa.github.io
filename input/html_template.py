@@ -19,7 +19,7 @@ html_b = dedent("""\
     
         {defns}
         """)
-        
+
 html_c = dedent("""\
         <script src="https://unpkg.com/@popperjs/core@2"></script>
         <script src="https://unpkg.com/tippy.js@6"></script>
@@ -43,6 +43,19 @@ html_c = dedent("""\
                 theme: 'popup',
             });
         </script>
+        <script>
+            function expand(dots,moreText,btnText) {
+                if (dots.style.display === "none") {
+                    dots.style.display = "inline";
+                    btnText.innerHTML = "🢀🢂";
+                    moreText.style.display = "none";
+                } else {
+                    dots.style.display = "none";
+                    btnText.innerHTML = "🢂🢀";
+                    moreText.style.display = "inline";
+                }
+            }
+        </script>
     </body>
     </html>
     """)
@@ -55,21 +68,26 @@ nodef_text = '<span id="NODEF">{word}</span>'
 nodef_text_bold = '<span id="NODEF" style="font-weight: bold;">{word}</span>'
 
 defns = dedent("""\
-<div style="display: none;">
-    {total_defns}
-</div>""")
+        <div style="display: none;">
+            {total_defns}
+        </div>""")
 
 defn = dedent("""\
-<div id="{idx}">
-    <a href="{url}" target="_blank"><img alt="ཚིག་མཛོད།" src="../assets/dict_icon.png" width=27" height="22"></a>
-    <br /><br />
-    {text}
-</div>""")
+        <div id="{idx}">
+            {text}
+            <br /><div style="width: 350px;"></div>
+            <a href="{url}" target="_blank"><img alt="ཚིག་མཛོད།" src="../assets/dict_icon.png" width=27" height="22"></a>
+        </div>""")
 
-en_title = '<div id="ENTITLE">{title}</div>'
+en_title = '<div id="ENTITLE"><center>{title}</center></div>'
 en_entry = '<div id="ENENTRY">{entry}</div>'
-bo_title = '<div id="BOTITLE">{title}</div>'
+bo_title = '<div id="BOTITLE"><center>{title}</center></div>'
 bo_entry = '<div id="BOENTRY">{entry}</div>'
+
+sense = dedent("""\
+        <button onclick="expand(document.getElementById('dots{sense_idx}'),document.getElementById('more{sense_idx}'),document.getElementById('myBtn{sense_idx}'))" id="myBtn{sense_idx}" style="border:1px solid lightblue; border-radius: 25%; color:lightblue; background-color: transparent;">🢀🢂</button>
+        {sense_head}<span id="dots{sense_idx}" style="display: inline; color: lightblue;">་་་</span><span id="more{sense_idx}" style="display: none;">{sense_body}</span>""")
+sense_sep = '<br />'
 
 dictdef_sep = ''
 dictdict_sep = '<br /><br />'
