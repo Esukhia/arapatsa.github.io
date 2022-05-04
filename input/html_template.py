@@ -41,6 +41,24 @@ html_c = dedent("""\
                 offset: [0, 0],
                 placement: 'bottom-start',
                 theme: 'popup',
+                popperOptions: {
+                    strategy: 'fixed',
+                    modifiers: [
+                        {
+                            name: 'flip',
+                            options: {
+                                fallbackPlacements: ['right', 'left'],
+                            },
+                        },
+                        {
+                            name: 'preventOverflow',
+                            options: {
+                                altAxis: true,
+                                tether: false,
+                            },
+                        }, 
+                    ],
+                },
             });
         </script>
         <script>
