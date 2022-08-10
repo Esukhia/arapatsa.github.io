@@ -28,6 +28,9 @@ def process_file(filename, is_expandable, mode='en_bo', selection=None):
     html = gen_html(defs)
 
     out_folder = Path(__file__).parent.parent / Path(filename.parts[1])
+    if not out_folder.is_dir():
+        out_folder.mkdir(exist_ok=True)
+
     if 'en' in mode:
         name = '-'.join(filename.parts[2:-1]) + '-' + filename.stem + '_EN.html'
     else:
@@ -163,8 +166,8 @@ def gen_html(defs):
 
 
 if __name__ == '__main__':
-    in_path = 'content/'
+    in_path = 'content/other'
     is_expandable = True
-    for mode in ['bo', 'bo_en']:
-        dict_yaml = 'selection_arapatsa.yaml'
+    for mode in ['en']:
+        dict_yaml = 'selection_ry.yaml'
         recursive_process(in_path, mode=mode, selection=dict_yaml, is_expandable=is_expandable)

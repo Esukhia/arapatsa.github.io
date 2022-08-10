@@ -1,0 +1,35 @@
+<div id="8">
+    <br />
+    <div id=""><center>{title}</center></div>
+    <div id="BOENTRY">
+        <button onclick="expand(document.getElementById('dots{btn_idx}'),document.getElementById('more{btn_idx}'),document.getElementById('myBtn{btn_idx}'))" id="myBtn" style="border:1px solid lightblue; border-radius: 25%; color:lightblue; background-color: transparent;">🢀🢂</button>
+        ༡.༼ཐ་དད་པ༽ མཛད་པ། མཛད་པ།
+        <span id="dots1" style="display: inline; color: lightblue;">་་་</span>
+        <span id="more1" style="display: none;">མཛོད། ། བྱེད་པའི་ཞེ་ས། མཛད་སྟབས་མི་བདེ་བ། གཞན་ལ་ཕན་པའི་རོགས་སྐྱོར་མཛད་པ། </span>
+        <br />
+        <button onclick="expand(document.getElementById('dots2'),document.getElementById('more2'),document.getElementById('myBtn2'))" id="myBtn2" style="border:1px solid lightblue; border-radius: 25%; color:lightblue; background-color: transparent;">🢀🢂</button>
+        ༢.སྤྱོད་པའམ་འཕྲིན་ལས། མཛད་རྗེས།
+        <span id="dots2" style="display: inline; color: lightblue;">་་་</span>
+        <span id="more2" style="display: none;">མཛད་ཕྱོགས། མཛད་སྟབས་མི་བདེ་བ། མཛད་པ་འཕྲིན་ལས།</span>
+    </div>
+
+    <script>
+    function myFunction2() {
+      var dots = document.getElementById("dots2");
+      var moreText = document.getElementById("more2");
+      var btnText = document.getElementById("myBtn2");
+      var btn = document.getElementById("button");
+
+      if (dots.style.display === "none") {
+        dots.style.display = "inline";
+        btnText.innerHTML = "🢀🢂";
+        moreText.style.display = "none";
+        btn.style.className = "expd";
+      } else {
+        dots.style.display = "none";
+        btnText.innerHTML = "🢂🢀";
+        moreText.style.display = "inline";
+        btn.style.className = "rdcd";
+      }
+    }
+    </script>

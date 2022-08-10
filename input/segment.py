@@ -44,7 +44,7 @@ def segment(dump):
     return sentences
 
 
-in_file = Path('content/B1/week1/A/3/ཤེས་བྱ་ཀུན་ཁྱབ་རྩ་འགྲེལ།.txt')
+in_file = Path('content/B1+/week2/A/2/ka-commentary.txt')
 dump = in_file.read_text()
 segmented = segment(dump)
 in_file.write_text(segmented)
