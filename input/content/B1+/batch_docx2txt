@@ -1,1 +1,1 @@
-find . -name '*.docx' | while read i; do pandoc --from docx --to plain "${i}" > "${i/docx/txt}"; done
+find . -name '*.docx' | while read i; do pandoc --from docx --to plain "${i}" > "${i/docx/txt}"; do rm "${i}"; done
