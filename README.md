@@ -36,3 +36,52 @@ non-space* chars* can* be* bolded.*
 
 +++ is usually the indentation for a verse.
 ```
+
+## Formatting Examples
+
+note: do not add empty lines. Headings take care of that.
+
+### རྩ་ཚིག
+
+```
+h3 section title
+རྩ་བ* །*
++++ first verse
++++ second verse
++++ third verse
++++ fourth verse
++++ ...
+```
+
+### ཚིག་གནད།
+
+```
+h2 རྩ་ཚིག་ གི་ ཚིག་ གནད །
+h3 vocab word
+འགྲེལ་བཤད* །_* here comes the explanation of the word.
+དཔེར་ན* །_* here comes an example of the word in usage.
+h3 ...
+འགྲེལ་བཤད* །_* ...
+དཔེར་ན* །_* ...
+```
+
+### འགྲེལ་བཤད།
+
+```
+འགྲེལ་བཤད* །_* here comes the explanation of the root text 
+```
+
+### རྩ་འགྲེལ།
+
+```
+h3 title of the section
+//* +++ root verse 1
+ +++ root verse 2
+ +++ root verse 3 *//
+ +++ commentary of those verses.
+h3 ...
+//* +++ ...
+ +++ ...
+ +++ ... *//
+ +++ ...
+```
